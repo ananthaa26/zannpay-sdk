@@ -1,4 +1,4 @@
-# PayZannStore Payment Gateway API
+#  Payment Gateway API
 
 ## Ringkas
 Semua request dibuat ke endpoint `/api/v1` menggunakan parameter `request`:
