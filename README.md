@@ -19,7 +19,7 @@ https://pay.zannstore.com
 ## Pendaftaran Akun
 Jika belum punya akun, silakan daftar terlebih dahulu di:
 ```
-https://pay.zannstore.com
+https://pay.zannstore.com/auth
 ```
 
 ## Autentikasi dan Signature
