@@ -11,7 +11,7 @@ Semua request dibuat ke endpoint `/api/v1` menggunakan parameter `request`:
 4. `profile` untuk lihat data akun merchant
 5. `withdraw_auto` untuk tarik saldo otomatis
 
-Endpoint callback provider ada di `/api/callback/*` dan akan memanggil `callback_url` milik merchant jika transaksi sukses.
+Server akan memanggil `callback_url` milik merchant jika transaksi sukses.
 
 ## Base URL
 Gunakan domain server Anda sendiri:
@@ -252,16 +252,6 @@ Catatan fee:
 1. Jika `type_fee=merchant`, fee dipotong dari `diterima`.
 2. Jika `type_fee=user`, fee ditambahkan ke nominal yang harus dibayar user.
 
-## Callback Provider
-Endpoint callback internal (dipanggil oleh provider):
-
-1. `POST /api/callback/linquqris`
-2. `POST /api/callback/linkquva`
-3. `POST /api/callback/linkqu-rentail`
-4. `POST /api/callback/qris3`
-
-Callback ini akan memproses transaksi dan memanggil `callback_url` merchant jika transaksi sukses.
-
 ## Callback ke Merchant (Webhook)
 
 Server akan mengirim `POST` JSON ke `callback_url` saat transaksi sukses. Ada 3 variasi payload:
@@ -322,19 +312,17 @@ Server akan mengirim `POST` JSON ke `callback_url` saat transaksi sukses. Ada 3 
 }
 ```
 
-## API List Penarikan
+## API List Penarikan (Publik)
 
 ### List Kode E-Wallet
 `GET /api/kode-ewallet`
 
-Response langsung dari:
-`https://paymentku.zannstore.com/api/kode-ewallet.php`
+Response: daftar kode e-wallet.
 
 ### List Kode Bank
 `GET /api/kode-bank`
 
-Response langsung dari:
-`https://paymentku.zannstore.com/api/kode-bank.php`
+Response: daftar kode bank.
 
 ## Contoh Request
 
