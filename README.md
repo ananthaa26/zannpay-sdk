@@ -1,6 +1,4 @@
-# PayZannStore Payment Gateway API (Laravel)
-
-Dokumentasi ini disusun dari kode Laravel yang ada di repo ini. Jika ada perubahan di kode, sesuaikan dokumen ini juga.
+# PayZannStore Payment Gateway API
 
 ## Ringkas
 Semua request dibuat ke endpoint `/api/v1` menggunakan parameter `request`:
@@ -14,16 +12,14 @@ Semua request dibuat ke endpoint `/api/v1` menggunakan parameter `request`:
 Server akan memanggil `callback_url` milik merchant jika transaksi sukses.
 
 ## Base URL
-Gunakan domain server Anda sendiri:
-
 ```
-{BASE_URL}
+https://pay.zannstore.com
 ```
 
-Contoh URL penuh:
-
+## Pendaftaran Akun
+Jika belum punya akun, silakan daftar terlebih dahulu di:
 ```
-{BASE_URL}/api/v1
+https://pay.zannstore.com
 ```
 
 ## Autentikasi dan Signature
@@ -254,9 +250,9 @@ Catatan fee:
 
 ## Callback ke Merchant (Webhook)
 
-Server akan mengirim `POST` JSON ke `callback_url` saat transaksi sukses. Ada 3 variasi payload:
+Server akan mengirim `POST` JSON ke `callback_url` saat transaksi sukses untuk QRIS.
 
-### A. QRIS (Linqu)
+### QRIS
 ```json
 {
   "data": {
@@ -270,44 +266,6 @@ Server akan mengirim `POST` JSON ke `callback_url` saat transaksi sukses. Ada 3 
     "rrn": "RRN",
     "diterima": "9930",
     "paid_at": "2026-03-11 19:00:00"
-  }
-}
-```
-
-### B. QRIS3
-```json
-{
-  "data": {
-    "trx_svr": "TX_SERVER",
-    "trx_id": "TRX_MERCHANT",
-    "method_code": "QRIS3",
-    "status": "Success",
-    "amount": "10000",
-    "fee": "0",
-    "type_fee": "merchant",
-    "diterima": "10000",
-    "paid_at": "2026-03-11 19:00:00"
-  }
-}
-```
-
-### C. VA dan Retail
-```json
-{
-  "data": {
-    "trx_svr": "TX_SERVER",
-    "trx_id": "TRX_MERCHANT",
-    "status": "Success",
-    "amount": "10000",
-    "fee": "3500",
-    "type_fee": "merchant",
-    "issuer_bank": "002",
-    "rrn": "1234567890",
-    "diterima": "6500",
-    "paid_at": "2026-03-11 19:00:00",
-    "va_code": "002",
-    "va_number": "1234567890",
-    "customer_name": "NAMA CUSTOMER"
   }
 }
 ```
@@ -328,7 +286,7 @@ Response: daftar kode bank.
 
 ### Buat transaksi QRIS
 ```bash
-curl -X POST "{BASE_URL}/api/v1" \
+curl -X POST "https://pay.zannstore.com/api/v1" \
   -d "request=new" \
   -d "merchant=MERCHANT_ID" \
   -d "trx_id=INV-1001" \
@@ -342,7 +300,7 @@ curl -X POST "{BASE_URL}/api/v1" \
 
 ### Cek status
 ```bash
-curl -X POST "{BASE_URL}/api/v1" \
+curl -X POST "https://pay.zannstore.com/api/v1" \
   -d "request=status" \
   -d "merchant=MERCHANT_ID" \
   -d "trx_id=INV-1001" \
@@ -351,7 +309,7 @@ curl -X POST "{BASE_URL}/api/v1" \
 
 ### Batalkan transaksi
 ```bash
-curl -X POST "{BASE_URL}/api/v1" \
+curl -X POST "https://pay.zannstore.com/api/v1" \
   -d "request=cancel" \
   -d "merchant=MERCHANT_ID" \
   -d "trx_id=INV-1001" \
@@ -360,7 +318,7 @@ curl -X POST "{BASE_URL}/api/v1" \
 
 ### Profile merchant
 ```bash
-curl -X POST "{BASE_URL}/api/v1" \
+curl -X POST "https://pay.zannstore.com/api/v1" \
   -d "request=profile" \
   -d "merchant=MERCHANT_ID" \
   -d "pin=123456" \
@@ -370,7 +328,7 @@ curl -X POST "{BASE_URL}/api/v1" \
 
 ### Withdraw otomatis
 ```bash
-curl -X POST "{BASE_URL}/api/v1" \
+curl -X POST "https://pay.zannstore.com/api/v1" \
   -d "request=withdraw_auto" \
   -d "merchant=MERCHANT_ID" \
   -d "pin=123456" \
