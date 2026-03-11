@@ -1,7 +1,7 @@
 #  Payment Gateway API
 
 ## Ringkas
-Semua request dibuat ke endpoint `/api/v1` menggunakan parameter `request`:
+Semua request dibuat ke endpoint `/v1` menggunakan parameter `request`:
 
 1. `new` untuk buat transaksi
 2. `status` untuk cek status transaksi
@@ -113,7 +113,7 @@ Catatan:
 5. Paylink menggunakan `checkout_url` menuju halaman pembayaran internal.
 
 ### 2. Cek Status Transaksi
-`POST /api/v1`
+`POST /v1`
 
 Parameter wajib:
 1. `request` = `status`
@@ -147,7 +147,7 @@ Respon sukses:
 ```
 
 ### 3. Batalkan Transaksi
-`POST /api/v1`
+`POST /v1`
 
 Parameter wajib:
 1. `request` = `cancel`
@@ -159,7 +159,7 @@ Catatan:
 1. Hanya transaksi `Pending` yang bisa dibatalkan.
 
 ### 4. Ambil Profile Merchant
-`POST /api/v1`
+`POST /v1`
 
 Parameter wajib:
 1. `request` = `profile`
@@ -186,7 +186,7 @@ Respon sukses:
 ```
 
 ### 5. Withdraw Otomatis
-`POST /api/v1`
+`POST /v1`
 
 Parameter wajib:
 1. `request` = `withdraw_auto`
@@ -286,7 +286,7 @@ Response: daftar kode bank.
 
 ### Buat transaksi QRIS
 ```bash
-curl -X POST "https://pay.zannstore.com/api/v1" \
+curl -X POST "https://pay.zannstore.com/v1" \
   -d "request=new" \
   -d "merchant=MERCHANT_ID" \
   -d "trx_id=INV-1001" \
@@ -300,7 +300,7 @@ curl -X POST "https://pay.zannstore.com/api/v1" \
 
 ### Cek status
 ```bash
-curl -X POST "https://pay.zannstore.com/api/v1" \
+curl -X POST "https://pay.zannstore.com/v1" \
   -d "request=status" \
   -d "merchant=MERCHANT_ID" \
   -d "trx_id=INV-1001" \
@@ -309,7 +309,7 @@ curl -X POST "https://pay.zannstore.com/api/v1" \
 
 ### Batalkan transaksi
 ```bash
-curl -X POST "https://pay.zannstore.com/api/v1" \
+curl -X POST "https://pay.zannstore.com/v1" \
   -d "request=cancel" \
   -d "merchant=MERCHANT_ID" \
   -d "trx_id=INV-1001" \
@@ -318,7 +318,7 @@ curl -X POST "https://pay.zannstore.com/api/v1" \
 
 ### Profile merchant
 ```bash
-curl -X POST "https://pay.zannstore.com/api/v1" \
+curl -X POST "https://pay.zannstore.com/v1" \
   -d "request=profile" \
   -d "merchant=MERCHANT_ID" \
   -d "pin=123456" \
@@ -328,7 +328,7 @@ curl -X POST "https://pay.zannstore.com/api/v1" \
 
 ### Withdraw otomatis
 ```bash
-curl -X POST "https://pay.zannstore.com/api/v1" \
+curl -X POST "https://pay.zannstore.com/v1" \
   -d "request=withdraw_auto" \
   -d "merchant=MERCHANT_ID" \
   -d "pin=123456" \
